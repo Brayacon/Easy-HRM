@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import styled from 'styled-components';
+
 import './App.css';
+import Dashboard from './pages/Dashboard';
+import MainNav from './components/MainNav';
+
+
+
+const RouterWrap = styled.div`
+
+    `;
+
 
 function App() {
+  const [sidebar, setSidebar] = useState(false)
+
+  const showSidebar = () => {setSidebar(!sidebar)}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <RouterWrap>
+        <MainNav/>
+        <Switch>
+          <Route path='/dashboard' exact component=
+          {Dashboard}/>
+        </Switch>
+      </RouterWrap>
+    </Router>
   );
 }
 
